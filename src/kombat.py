@@ -36,6 +36,17 @@ class KombatCharacter:
         not_empty_hits = [hit for hit in self.hits if hit]
         return len(not_empty_hits)
 
+    def get_combos_count(self) -> int:
+        count = 0
+        max_action = max([self.moves, self.hits], key=len)
+        for index in range(len(max_action)):
+            move = self.moves[index]
+            hit = self.hits[index]
+            if move and hit:
+                count += 1
+
+        return count
+
 
 class Kombat:
     def __init__(self) -> None:
