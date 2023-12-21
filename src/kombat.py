@@ -47,6 +47,27 @@ class KombatCharacter:
 
         return count
 
+    def execute_action(self, movement: str, hit: str, oponent) -> None:
+        hit_energy = 0
+        action_comment = ""
+
+        if self.name in CHARACTER_ATTACKS.keys():
+            action_comment += f"{self.name}"
+            action_key = (movement, hit)
+            if action_key in CHARACTER_ATTACKS[self.name]:
+                action, hit_energy = CHARACTER_ATTACKS[self.name][action_key]
+                action_comment += f" usa un {action}"
+            else:
+                if movement in MOVEMENTS:
+                    action_comment += " avanza"
+                if hit in HITS:
+                    action_comment += f" y da {HIT_WORDS[hit]}"
+                    hit_energy = 1
+
+        oponent.energy -= hit_energy
+
+        print(action_comment)
+
 
 class Kombat:
     def __init__(self) -> None:
