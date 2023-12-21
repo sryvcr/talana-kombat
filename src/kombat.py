@@ -32,6 +32,10 @@ class KombatCharacter:
         not_empty_moves = [move for move in self.moves if move]
         return len(not_empty_moves)
 
+    def get_hits_count(self) -> int:
+        not_empty_hits = [hit for hit in self.hits if hit]
+        return len(not_empty_hits)
+
 
 class Kombat:
     def __init__(self) -> None:
