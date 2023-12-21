@@ -28,6 +28,11 @@ class KombatCharacter:
     def energy(self, character_energy: int) -> None:
         self.__energy = character_energy
 
+    def get_moves_count(self) -> int:
+        not_empty_moves = [move for move in self.moves if move]
+        return len(not_empty_moves)
+
+
 class Kombat:
     def __init__(self) -> None:
         data = self.get_kombat_data()
