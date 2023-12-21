@@ -1,5 +1,9 @@
 from src.constants import (
     ARNALDOR,
+    CHARACTER_ATTACKS,
+    HITS,
+    HIT_WORDS,
+    MOVEMENTS,
     TONYN,
 )
 
@@ -16,6 +20,13 @@ class KombatCharacter:
         self.moves = moves
         self.hits = hits
 
+    @property
+    def energy(self) -> int:
+        return self.__energy
+
+    @energy.setter
+    def energy(self, character_energy: int) -> None:
+        self.__energy = character_energy
 
 class Kombat:
     def __init__(self) -> None:
