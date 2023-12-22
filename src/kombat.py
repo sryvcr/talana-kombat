@@ -124,3 +124,32 @@ class Kombat:
             return True
 
         return False
+
+    def start(self) -> None:
+        first_player = self.get_starting_player()
+        second_player = self.player_1 if first_player != self.player_1 else self.player_2
+
+        max_turns = max([self.player_1.moves, self.player_2.moves], key=len)
+
+        for i in range(len(max_turns)):
+            try:
+                first_player.execute_action(
+                    movement=first_player.moves[i],
+                    hit=first_player.hits[i],
+                    oponent=second_player,
+                )
+            except IndexError:
+                pass
+            if self.is_there_a_winner():
+                break
+
+            try:
+                second_player.execute_action(
+                    movement=second_player.moves[i],
+                    hit=second_player.hits[i],
+                    oponent=first_player,
+                )
+            except IndexError:
+                pass
+            if self.is_there_a_winner():
+                break
