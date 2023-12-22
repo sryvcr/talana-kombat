@@ -90,3 +90,21 @@ class Kombat:
         kombat_str = input()
         json_data = json.loads(kombat_str)
         return json_data
+
+    def get_starting_player(self) -> KombatCharacter:
+        player_1_combos = self.player_1.get_combos_count()
+        player_1_moves = self.player_1.get_moves_count()
+        player_1_hits = self.player_1.get_hits_count()
+
+        player_2_combos = self.player_2.get_combos_count()
+        player_2_moves = self.player_2.get_moves_count()
+        player_2_hits = self.player_2.get_hits_count()
+
+        if (
+            player_1_combos > player_2_combos
+            or player_1_moves > player_2_moves
+            or player_1_hits > player_2_hits
+        ):
+            return self.player_2
+
+        return self.player_1
