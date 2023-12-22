@@ -1,8 +1,9 @@
 import pytest
+from unittest import mock
 
 from src.constants import ARNALDOR, TONYN
-from src.kombat import KombatCharacter
-from tests.recipes import kombat_1_data
+from src.kombat import KombatCharacter, Kombat
+from tests.recipes import kombat_1_data, kombat_2_data
 
 
 class TestKombatCharacter:
@@ -63,3 +64,57 @@ class TestKombatCharacter:
     def test_get_combos_count(self):
         assert self.player_1.get_combos_count() == 4
         assert self.player_2.get_combos_count() == 4
+
+
+class TestKombat:
+    def setup_method(self):
+        mock_get_kombat_data = mock.patch(
+            "src.kombat.Kombat.get_kombat_data", return_value=kombat_2_data
+        )
+        mock_get_kombat_data.start()
+
+        self.kombat = Kombat()
+
+    def test_get_starting_player(self):
+        first_player = self.kombat.get_starting_player()
+
+        assert first_player.name == TONYN
+
+    @pytest.mark.parametrize(
+        ["player_1_energy", "player_2_energy", "is_there_a_winner", "win_message"],
+        [
+            (0, 0, True, "La pelea termina en un empate\n"),
+            (0, 3, True, f"{ARNALDOR} gana la pelea y aún le quedan 3 de energía\n"),
+            (1, 0, True, f"{TONYN} gana la pelea y aún le quedan 1 de energía\n"),
+            (1, 2, False, ""),
+        ]
+    )
+    def test_is_there_a_winner(
+        self, player_1_energy, player_2_energy, is_there_a_winner, win_message, capfd
+    ):
+        self.kombat.player_1.energy = player_1_energy
+        self.kombat.player_2.energy = player_2_energy
+
+        result = self.kombat.is_there_a_winner()
+        out, _ = capfd.readouterr()
+
+        assert out == win_message
+        assert result == is_there_a_winner
+
+    def test_start(self, capfd):
+        fight_comments = (
+            f"{TONYN} y da una patada\n"
+            f"{ARNALDOR} avanza y da un puño\n"
+            f"{TONYN} usa un Taladoken\n"
+            f"{ARNALDOR} y da una patada\n"
+            f"{TONYN} avanza y da una patada\n"
+            f"{ARNALDOR} avanza y da una patada\n"
+            f"{TONYN} usa un Taladoken\n"
+            f"{TONYN} gana la pelea y aún le quedan 3 de energía\n"
+        )
+        self.kombat.start()
+        out, _ = capfd.readouterr()
+
+        assert out == fight_comments
+        assert self.kombat.player_1.energy == 3
+        assert self.kombat.player_2.energy == -2
