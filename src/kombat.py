@@ -108,3 +108,19 @@ class Kombat:
             return self.player_2
 
         return self.player_1
+
+    def is_there_a_winner(self) -> bool:
+        if self.player_1.energy <= 0 or self.player_2.energy <= 0:
+            if self.player_1.energy == self.player_2.energy:
+                print("La pelea termina en un empate")
+            elif self.player_1.energy > self.player_2.energy:
+                print(
+                    f"{self.player_1.name} gana la pelea y aún le quedan {self.player_1.energy} de energía"
+                )
+            elif self.player_2.energy > self.player_1.energy:
+                print(
+                    f"{self.player_2.name} gana la pelea y aún le quedan {self.player_2.energy} de energía"
+                )
+            return True
+
+        return False
