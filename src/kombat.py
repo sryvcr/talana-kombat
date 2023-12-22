@@ -1,3 +1,5 @@
+import json
+
 from src.constants import (
     ARNALDOR,
     CHARACTER_ATTACKS,
@@ -84,13 +86,7 @@ class Kombat:
         )
 
     def get_kombat_data(self) -> dict:
-        return {
-            "player1": {
-                "movimientos": ["D", "DSD", "S", "DSD", "SD"],
-                "golpes": ["K", "P", "", "K", "P"],
-            },
-            "player2": {
-                "movimientos": ["SA", "SA", "SA", "ASA", "SA"],
-                "golpes": ["K", "", "K", "P", "P"],
-            }
-        }
+        print("Ingresa los valores del juego en formato JSON:")
+        kombat_str = input()
+        json_data = json.loads(kombat_str)
+        return json_data
