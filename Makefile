@@ -5,4 +5,4 @@ run:
 	docker run -it talana-kombat
 
 test:
-	pytest tests/ -s
+	docker run -it talana-kombat pytest tests/ -s
