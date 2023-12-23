@@ -49,7 +49,9 @@ class KombatCharacter:
 
         return count
 
-    def execute_action(self, movement: str, hit: str, oponent) -> None:
+    def execute_action(
+        self, movement: str, hit: str, oponent: "KombatCharacter"
+    ) -> None:
         hit_energy = 0
         action_comment = ""
 
