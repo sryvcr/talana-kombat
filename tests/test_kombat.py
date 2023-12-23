@@ -38,7 +38,7 @@ class TestKombatCharacter:
             (1, "Tonyn usa un Taladoken\n", 3),
             (2, "Tonyn avanza\n", 6),
             (4, "Tonyn avanza y da un puño\n", 5),
-        ]
+        ],
     )
     def test_execute_action_movement_and_hit(
         self, index, message, remaining_energy, capfd
@@ -87,7 +87,7 @@ class TestKombat:
             (0, 3, True, f"{ARNALDOR} gana la pelea y aún le quedan 3 de energía\n"),
             (1, 0, True, f"{TONYN} gana la pelea y aún le quedan 1 de energía\n"),
             (1, 2, False, ""),
-        ]
+        ],
     )
     def test_is_there_a_winner(
         self, player_1_energy, player_2_energy, is_there_a_winner, win_message, capfd
