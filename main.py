@@ -7,4 +7,9 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    while True:
+        try:
+            run()
+        except KeyboardInterrupt:
+            print("\n👾 game over 👾")
+            break
