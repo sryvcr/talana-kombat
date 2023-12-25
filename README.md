@@ -6,13 +6,13 @@ Talana Kombat JRPG
 ```bash
 $ git checkout develop
 ```
-3. Run game execute in console:  
+3. To run game execute in console:  
 ```bash
 $ make build
 $ make run
 ```
 
-To execute tests execute in console:  
+To run tests execute in console:  
 ```bash
 $ make test
 ```
