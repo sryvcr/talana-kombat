@@ -52,6 +52,7 @@ class KombatCharacter:
     def execute_action(
         self, movement: str, hit: str, oponent: "KombatCharacter"
     ) -> None:
+        and_connector_str = False
         hit_energy = 0
         action_comment = ""
 
@@ -64,8 +65,11 @@ class KombatCharacter:
             else:
                 if movement in MOVEMENTS:
                     action_comment += " avanza"
+                    and_connector_str = True
                 if hit in HITS:
-                    action_comment += f" y da {HIT_WORDS[hit]}"
+                    if and_connector_str:
+                        action_comment += " y"
+                    action_comment += f" da {HIT_WORDS[hit]}"
                     hit_energy = 1
 
         oponent.energy -= hit_energy

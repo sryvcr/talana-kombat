@@ -103,10 +103,10 @@ class TestKombat:
 
     def test_start(self, capfd):
         fight_comments = (
-            f"{TONYN} y da una patada\n"
+            f"{TONYN} da una patada\n"
             f"{ARNALDOR} avanza y da un puño\n"
             f"{TONYN} usa un Taladoken\n"
-            f"{ARNALDOR} y da una patada\n"
+            f"{ARNALDOR} da una patada\n"
             f"{TONYN} avanza y da una patada\n"
             f"{ARNALDOR} avanza y da una patada\n"
             f"{TONYN} usa un Taladoken\n"
