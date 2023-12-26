@@ -10,5 +10,8 @@ down:
 run-compose:
 	docker-compose build && docker-compose run --rm talana-kombat
 
+down-compose:
+	docker-compose down
+
 test:
 	docker run -it talana-kombat pytest tests/ -s
