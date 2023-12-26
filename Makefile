@@ -4,6 +4,9 @@ build:
 run:
 	docker run --name talana-kombat -it talana-kombat
 
+down:
+	docker stop talana-kombat
+
 run-compose:
 	docker-compose build && docker-compose run --rm talana-kombat
 
