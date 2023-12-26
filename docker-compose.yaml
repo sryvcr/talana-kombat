@@ -1,0 +1,7 @@
+version: "3.3"
+
+services:
+  talana-kombat:
+    container_name: talana-kombat
+    image: talana-kombat
+    build: .
