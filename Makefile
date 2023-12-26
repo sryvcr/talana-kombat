@@ -8,7 +8,7 @@ down:
 	docker stop talana-kombat
 
 run-compose:
-	$(MAKE) build && docker-compose run --rm talana-kombat
+	$(MAKE) build && docker-compose run --name talana-kombat --rm talana-kombat
 
 down-compose:
 	docker-compose down
