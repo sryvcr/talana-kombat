@@ -1,5 +1,6 @@
 black==23.3.0
 coverage==7.2.7
 flake8==6.0.0
+jsonschema==4.20.0
 pre-commit==3.3.2
 pytest==7.4.0
