@@ -18,9 +18,13 @@ class KombatCharacter:
         hits: list,
     ) -> None:
         self.__energy = 6
-        self.name = name
+        self.__name = name
         self.moves = moves
         self.hits = hits
+
+    @property
+    def name(self) -> str:
+        return self.__name
 
     @property
     def energy(self) -> int:
