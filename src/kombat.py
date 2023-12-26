@@ -1,4 +1,5 @@
 import json
+from jsonschema import validate, ValidationError
 
 from src.constants import (
     ARNALDOR,
@@ -8,6 +9,8 @@ from src.constants import (
     MOVEMENTS,
     TONYN,
 )
+from src.exceptions import JSONDecodeException, JSONSchemaException
+from src.schemas import KOMBAT_DATA_SCHEMA
 
 
 class KombatCharacter:
@@ -98,7 +101,21 @@ class Kombat:
     def get_kombat_data(self) -> dict:
         print("Ingresa los valores del juego en formato JSON:")
         kombat_str = input()
-        json_data = json.loads(kombat_str)
+
+        try:
+            json_data = json.loads(kombat_str)
+        except json.decoder.JSONDecodeError:
+            raise JSONDecodeException(
+                msg="El formato de la data de la pelea debe ser JSON, vuelve a intentar"
+            )
+
+        try:
+            validate(instance=json_data, schema=KOMBAT_DATA_SCHEMA)
+        except ValidationError:
+            raise JSONSchemaException(
+                msg="El formato del JSON no es el correcto, vuelva a intentar"
+            )
+
         return json_data
 
     def get_starting_player(self) -> KombatCharacter:
