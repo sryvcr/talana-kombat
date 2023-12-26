@@ -1,5 +1,5 @@
 build:
-	docker build -t talana-kombat .
+	docker rmi talana-kombat -f && docker build -t talana-kombat .
 
 run:
 	docker run --name talana-kombat -it talana-kombat
